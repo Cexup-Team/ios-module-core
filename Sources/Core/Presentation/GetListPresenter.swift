@@ -2,32 +2,29 @@
 //  File.swift
 //  
 //
-//  Created by Iqbal Nur Haq on 05/01/23.
+//  Created by Iqbal Nur Haq on 17/01/23.
 //
 
 import Foundation
 import SwiftUI
 import Combine
 
-public class Presenter<Request, Response, Interactor: UseCase>: ObservableObject
-where
-Interactor.Request == Request,
-Interactor.Response == Response {
+public class GetListPresenter<Request, Response, Interactor: UseCase>: ObservableObject where Interactor.Request == Request, Interactor.Response == [Response] {
     
     private var cancellables: Set<AnyCancellable> = []
+    
     private let _useCase: Interactor
     
-    @Published public var item: Response?
+    @Published public var list: [Response] = []
     @Published public var errorMessage: String = ""
     @Published public var isLoading: Bool = false
-    @Published public var isSuccess: Bool = false
     @Published public var isError: Bool = false
     
-    public init(useCase: Interactor){
+    public init(useCase: Interactor) {
         _useCase = useCase
     }
     
-    public func execute(request: Request?) {
+    public func getList(request: Request?) {
         isLoading = true
         _useCase.execute(request: request)
             .receive(on: RunLoop.main)
@@ -39,12 +36,11 @@ Interactor.Response == Response {
                     self.isLoading = false
                 case .finished:
                     self.isLoading = false
-                    self.isSuccess = true
                 }
-            }, receiveValue: { item in
-                self.item = item
+            }, receiveValue: { list in
+                self.list = list
+                    
             })
             .store(in: &cancellables)
     }
-    
 }

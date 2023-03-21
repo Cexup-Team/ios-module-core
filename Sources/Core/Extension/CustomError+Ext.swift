@@ -12,6 +12,7 @@ public enum URLError: LocalizedError {
     case invalidResponse
     case addressUnreachable(URL)
     case custom(String)
+    case serverError
     
     public var errorDescription: String? {
         switch self {
@@ -19,6 +20,7 @@ public enum URLError: LocalizedError {
         case .invalidResponse: return "The server responded with garbage."
         case .addressUnreachable(let url): return "\(url.absoluteString) is unreachable."
         case .custom(let message): return "\(message)"
+        case .serverError: return "Internal Server Error"
         }
     }
 }

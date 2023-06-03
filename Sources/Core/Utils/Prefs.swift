@@ -14,6 +14,7 @@ public class Prefs
     private let keyAccessTokenPrefs = "tokenPrefs"
     private let keyDoctorIdPrefs = "doctorIdPrefs"
     private let keyUserCodePrefs = "userCodePrefs"
+    private let keyNoType = "noTypePrefs"
     private let keyDoctorHospitalIdPrefs = "doctorHospitalIdPrefs"
     private let keyOnboardingPatient = "onBoardingPatientPrefs"
     private let keyNotifToken = "notifTokenPrefs"
@@ -70,6 +71,15 @@ public class Prefs
         }
         get {
             return defaults.string(forKey: keyNotifToken) ?? ""
+        }
+    }
+    
+    public var noTypePrefs: String {
+        set {
+            defaults.setValue(newValue, forKey: keyNoType)
+        }
+        get {
+            return defaults.string(forKey: keyNoType) ?? ""
         }
     }
   

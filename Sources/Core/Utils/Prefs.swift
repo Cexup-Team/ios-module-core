@@ -12,6 +12,7 @@ public class Prefs
     private let defaults = UserDefaults.standard
     
     private let keyAccessTokenPrefs = "tokenPrefs"
+    private let keyUserIdPrefs = "userIdPrefs"
     private let keyDoctorIdPrefs = "doctorIdPrefs"
     private let keyUserCodePrefs = "userCodePrefs"
     private let keyNoType = "noTypePrefs"
@@ -26,6 +27,15 @@ public class Prefs
         }
         get {
             return defaults.string(forKey: keyAccessTokenPrefs) ?? ""
+        }
+    }
+    
+    public var userIdPrefs: String {
+        set {
+            defaults.setValue(newValue, forKey: keyUserIdPrefs)
+        }
+        get {
+            return defaults.string(forKey: keyUserIdPrefs) ?? ""
         }
     }
     

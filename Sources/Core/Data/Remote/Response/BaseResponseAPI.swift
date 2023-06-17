@@ -15,8 +15,8 @@ public struct BaseResponseAPI<T: Decodable> : Decodable {
         case data
     }
     
-    let code: String
-    let success: Bool
-    let message: String
-    let data: T?
+    public let code: String
+    public let success: Bool
+    public let message: String
+    public let data: T?
 }

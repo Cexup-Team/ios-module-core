@@ -19,6 +19,8 @@ public class Prefs
     private let keyDoctorHospitalIdPrefs = "doctorHospitalIdPrefs"
     private let keyOnboardingPatient = "onBoardingPatientPrefs"
     private let keyNotifToken = "notifTokenPrefs"
+    
+    private let keyLastHeartRate = "lastHeartRate"
 
   
     public var accessTokenPrefs: String {
@@ -90,6 +92,15 @@ public class Prefs
         }
         get {
             return defaults.string(forKey: keyNoType) ?? ""
+        }
+    }
+    
+    public var lastHeartRate: Int {
+        set {
+            defaults.setValue(newValue, forKey: keyLastHeartRate)
+        }
+        get {
+            return defaults.integer(forKey: keyLastHeartRate) ?? 0
         }
     }
   

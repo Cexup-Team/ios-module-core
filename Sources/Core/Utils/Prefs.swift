@@ -21,6 +21,10 @@ public class Prefs
     private let keyNotifToken = "notifTokenPrefs"
     
     private let keyLastHeartRate = "lastHeartRate"
+    private let keyLastBloodOxygen = "lastBloodOxygen"
+    private let keyLastRespiration = "lastRespiration"
+    private let keyLastTemperature = "lastTemperature"
+    private let keyLastBloodPress = "lastBloodPress"
 
   
     public var accessTokenPrefs: String {
@@ -101,6 +105,42 @@ public class Prefs
         }
         get {
             return defaults.integer(forKey: keyLastHeartRate) ?? 0
+        }
+    }
+    
+    public var lastBloodOxygen: Int {
+        set {
+            defaults.setValue(newValue, forKey: keyLastBloodOxygen)
+        }
+        get {
+            return defaults.integer(forKey: keyLastBloodOxygen) ?? 0
+        }
+    }
+    
+    public var lastRespiration: Int {
+        set {
+            defaults.setValue(newValue, forKey: keyLastRespiration)
+        }
+        get {
+            return defaults.integer(forKey: keyLastRespiration) ?? 0
+        }
+    }
+    
+    public var lastTemperature: Int {
+        set {
+            defaults.setValue(newValue, forKey: keyLastTemperature)
+        }
+        get {
+            return defaults.integer(forKey: keyLastTemperature) ?? 0
+        }
+    }
+    
+    public var lastBloodPress: Int {
+        set {
+            defaults.setValue(newValue, forKey: keyLastBloodPress)
+        }
+        get {
+            return defaults.integer(forKey: keyLastBloodPress) ?? 0
         }
     }
   
